@@ -1,0 +1,19 @@
+% stimulus/git options
+ops.w = .5;
+ops.period = .025;
+ops.fs = 1/ops.period;
+ops.f = 4000*(2 .^ ([0:32]/8));
+ops.t = 0:1/ops.fs:(ops.w-ops.period);
+ops.mu = 30;
+ops.sd = [1 3];
+ops.exemplars = 40;
+ops.blockLength = 2;
+ops.ntrials = 20;
+ops.pad = ops.w;
+ops.alpha = nan;
+
+% neuron model options
+obj.base_rate = 10;
+obj.mean_contrast = 1/((ops.sd(1)+ops.sd(2))/(2*ops.sd(1)*ops.sd(2)));
+obj.gain_control = 0;
+obj.operating_point_offset = 0;

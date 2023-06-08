@@ -1,0 +1,7 @@
+*.mat
+*.pdf
+!gain_control_model.pdf
+*.sh.e*
+*.sh.o*
+/_trash
+.DS_Store

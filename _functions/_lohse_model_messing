@@ -1,0 +1,5 @@
+% objectives:
+% 1) given a STRF, a stimulus and a set of NL parameters, generate spikes
+% 2) compute a trial averaged PSTH, and make a function for fitting the parameters in each contrast and the adaptation time
+
+% stimulus generation

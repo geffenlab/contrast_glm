@@ -1,0 +1,34 @@
+#!/bin/bash
+
+filepath="/cbica/home/angelonc/comp_space/contrast_glm"
+params="$filepath/params_default.txt"
+#qsub -l h_vmem=12G -N cGLMtest $filepath/run_contrastGLM.sh $MATLAB_DIR
+
+doneCnt=0
+runCnt=0
+
+for f in $filepath/../_data/K184*.mat
+do
+    #echo "Input file: $f"
+    fn="${f##*/}"
+    fout="$filepath/_res/acute_$fn"
+    #echo "Output file: $fout"
+
+    if test -f "$fout"; then
+      ((doneCnt=doneCnt+1))
+      echo "$fout exists ... $doneCnt"
+    else
+      ((runCnt=runCnt+1))
+      echo "$fout doesnt exist, submitting job ... $runCnt"
+      #qsub -l h_vmem=16G -N glm_acute $filepath/run_contrastGLM_acute.sh $MATLAB_DIR $f $fout $params
+    fi
+
+done
+
+watch 'qstat | wc -l ; qstat'
+
+echo "$doneCnt done. $runCnt to run."
+
+rsync -avhP \
+      angelonc@cubic-login.uphs.upenn.edu:/cbica/home/angelonc/comp_space/contrast_glm/_res/*.mat \
+      /Users/chris/chris-lab/projects/contrast_glm/_res/

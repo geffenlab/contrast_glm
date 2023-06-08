@@ -1,0 +1,7 @@
+ops.w = .5;
+ops.alpha = -1;
+ops.pad = ops.w;
+ops.contrast2use = 'ideal';
+ops.gain_lags = ops.w * ops.fs;
+ops.scale = false;
+ops.weighted = false;

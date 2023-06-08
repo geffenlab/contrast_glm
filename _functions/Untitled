@@ -1,0 +1,23 @@
+function [y,p_tau] = tauNL(x,tau,res,ops)
+% function [y,p_tau] = tauNL(x,tau,res,ops)
+%  x: STRF convolved with stimulus, trial mean
+%  tau: time constant in samples
+%  res: results structure
+%  ops: options from results
+
+nc = normalize(res.c,'range',[0 1]);
+t = 1:(ops.blockLength * ops.fs);
+
+% smoothly vary parameters according to tau
+p = res.gc_ln.ahat;
+for i = 1:size(p,2)
+    tmp = p(1,i) + ( p(2,i) - p(1,i) ) .* (conv(e_kernel,nc)/sum(e_kernel));
+    p_tau(i,:) = tmp(1:length(nc));
+end
+
+% generate rate prediction at each timestep as the parameters adapt
+% (first do mean x, then do individual x if needed)
+mdl = ops.ln_model;
+for i = 1:length(x1)
+    y(i) = mdl(p_tau(:,i),x(i));
+end
