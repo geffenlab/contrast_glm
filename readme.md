@@ -34,7 +34,7 @@ Practically, the model was fit in two steps:
 This entire fitting procedure was accomplished using 10-fold cross-validation, and fitting was performed using Poisson regression with `glmfit` in Matlab.
 
 Fits to individual neurons were run on a computing cluster with precompiled Matlab code, see
-`contrastGLM_acute.m` for compilation code (lines 34-36). The bash script called `submit_acute_run.sh` runs different versions of the model on the data stored on the cluster. If you wish to run the analysis from scratch, the raw data is provided on [Dryad](link) under `_data/_glm`.
+`contrastGLM_acute.m` for compilation code (lines 34-36). The bash script called `submit_acute_run.sh` runs different versions of the model on the data stored on the cluster. If you wish to run the analysis from scratch, the raw data is provided on [DRYAD](https://doi.org/10.5061/dryad.6djh9w120) under `_data/_glm`.
 
 The fitting procedure takes some time (approx 30 minutes per neuron). As such, we have provided the 
-fits on [Dryad](link) in `_data/_glm/_res`. You may download the files, and point to the location of this directory in line 5 of `run_gcglm.m` to recreate the figures from the paper. For more details, see https://github.com/geffenlab/contrast_behavior/blob/main/readme.md.
+fits on [DRYAD](https://doi.org/10.5061/dryad.6djh9w120) in `_data/_glm/_res`. You may download the files, and point to the location of this directory in line 5 of `run_gcglm.m` to recreate the figures from the paper. For more details, see https://github.com/geffenlab/contrast_behavior/blob/main/readme.md.
