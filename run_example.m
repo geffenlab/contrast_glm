@@ -16,3 +16,6 @@ spline = [3,3];
 
 % fit cell
 contrastGLM_acute(file, outfile, w, gw, alpha, dc, cv, spline)
+
+% plot results
+plot_acute_neuron(outfile)
