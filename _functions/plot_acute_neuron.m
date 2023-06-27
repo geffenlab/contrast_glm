@@ -4,13 +4,14 @@ load(filename)
 
 ncols = 3;
 nrows = 3;
-twin = 12; % multiple of 8
+blockLen = ops.stimInfo.baseNoiseD;
+twin = blockLen * 4; % multiple of blockLen
 
 % spectrogram supplied?
 if exist('spec','var')
     spec_r = repmat(spec',nreps,1) - mean(spec(:));
     order_r = repmat(order,nreps,1);
-    x1 = reshape(mean(spec_r,2),3*ops.fs,[])';
+    x1 = reshape(mean(spec_r,2),blockLen*ops.fs,[])';
     clims = linspace(-max(abs(x1(:))),max(abs(x1(:))),1000);
     cmap = zeroCMap(clims,0);
     % stimulus and repeats

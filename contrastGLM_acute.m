@@ -184,7 +184,7 @@ t(3) = toc(t0);
 
 
 %% compute noise ratio for spikes
-y2 = reshape(y,3*ops.fs,[])';
+y2 = reshape(y,ops.stimInfo.baseNoiseD*ops.fs,[])';
 [NR,uPattI] = responsePower(y2(:,ops.fs:end),order_r);
 nr(:,1) = NR(uPattI(:,1) == ops.contrast(1));
 nr(:,2) = NR(uPattI(:,1) == ops.contrast(2));
@@ -195,7 +195,13 @@ res.c = c;
 res.scene = scene;
 res.nr = nr;
 res.cellID = u.cellID;
-res.sessionID = u.sessionID;
+if isfield(u, 'sessionID')
+    res.sessionID = u.sessionID;
+elseif isfield(u, 'sessID')
+    res.sessionID = u.sessID;
+else
+    error('session ID not found in u');
+end
 
 % stop time
 stopTime = datestr(now);
