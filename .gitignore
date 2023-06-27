@@ -4,4 +4,5 @@
 *.sh.e*
 *.sh.o*
 /_trash
+/_data
 .DS_Store
